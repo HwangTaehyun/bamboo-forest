@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm run tsc -- -p .",
     "build:watch": "npm run tsc -- -w -p .",
-    "start": "serverless offline --noPrependStageInUrl",
+    "start": "node dist/app.js",
     "release": "dotenv release-it",
     "tsc": "tsc",
     "deploy:dev": "NODE_ENV=development sls deploy --verbose",
@@ -27,7 +27,7 @@
     "dotenv-cli": "^7.0.0",
     "release-it": "^14.14.2",
     "serverless-dotenv-plugin": "^4.0.2",
-    "serverless-offline": "^12.0.3",
+    "serverless-offline": "^12.0.4",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
   }

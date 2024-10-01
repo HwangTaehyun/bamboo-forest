@@ -1,20 +1,15 @@
-import { AwsLambdaReceiver } from "@slack/bolt";
-import {
-  AwsCallback,
-  AwsEvent,
-  AwsResponse,
-} from "@slack/bolt/dist/receivers/AwsLambdaReceiver";
+import { ExpressReceiver } from "@slack/bolt";
 
 import "./utils/env";
 import { SLACK_SIGNING_SECRET } from "./utils/env";
 import { Bamboo } from "./classes/Bamboo";
 
-const awsLambdaReceiver = new AwsLambdaReceiver({
+const expressReceiver = new ExpressReceiver({
   signingSecret: SLACK_SIGNING_SECRET,
 });
 
 const bamboo = new Bamboo({
-  awsLambdaReceiver,
+  expressReceiver,
 })
   .applyBambooCommon()
   .applyBambooMessage()
@@ -22,13 +17,7 @@ const bamboo = new Bamboo({
 
 console.log(bamboo);
 
-const handler = async (
-  event: AwsEvent,
-  context: any,
-  callback: AwsCallback
-): Promise<AwsResponse> => {
-  const handler = await awsLambdaReceiver.start();
-  return handler(event, context, callback);
-};
-
-module.exports.handler = handler;
+// Start the Express server
+expressReceiver.app.listen(3000, () => {
+  console.log("⚡️ Bolt app is running on port 3000!");
+});

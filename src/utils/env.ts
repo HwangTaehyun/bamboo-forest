@@ -5,6 +5,9 @@ import { config } from "dotenv";
 const pathToConfig = "../../.env";
 config({ path: resolve(__dirname, pathToConfig) });
 
+console.log("kk");
+console.log(process.env);
+
 export const SLACK_BAMBOO_CHANNEL = process.env.SLACK_BAMBOO_CHANNEL ?? "";
 export const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN ?? "";
 export const SLACK_SIGNING_SECRET = process.env.SLACK_SIGNING_SECRET ?? "";
